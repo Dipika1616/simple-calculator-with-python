@@ -1,0 +1,77 @@
+from tkinter import *
+ 
+sem = Tk() # This is to create a basic window
+# sem.resizable(0,0) # this is to prevent from resizing the window
+sem.geometry("442x450")  # this is for the size of the window 
+sem.title("SEM 3 PROJECT")
+
+"""----------------Functions---------------
+  'mouse_click' function : 
+  This Function continuously updates the 
+  input field whenever you enters a number
+"""
+def mouse_click(item):
+    global expression
+    expression = expression + str(item)
+    input_text.set(expression)
+
+# 'all_clear' function :This is used to clear the input field.
+     
+def all_clear(): 
+    global expression
+    expression = "" 
+    input_text.set("")
+ 
+ #'equal':This method calculates the expression present in input field.   
+
+def equal():
+    global expression
+    result = str(eval(expression)) # 'eval':This function is used to evaluates the string expression directly
+    input_text.set(result)
+    expression = ""
+expression = ""
+ 
+# 'StringVar()' :It is used to get the instance of input field
+input_text = StringVar()
+ 
+# Creating a frame for the input field
+input_frame = Frame(sem, height=50, bd=5,bg ="grey")
+input_frame.pack(side=TOP)
+ 
+#Creating a input field inside the 'Frame'
+input_field = Entry(input_frame, font=('times new roman', 18, 'italic'), textvariable=input_text, width=29, bg="#c7c9c9", bd=0, justify=CENTER)
+input_field.grid(row=0, column=0)
+input_field.pack(side = RIGHT,ipady=20) # 'ipady' is internal padding to increase the height of input field
+ 
+#Creating another 'Frame' for the button below the 'input_frame'
+frame = Frame(sem, width=312, height=272.5, bg="grey")
+frame.pack()
+ 
+# First row
+clear = Button(frame, text = "C", fg = "black", width = 36, height = 3, bd = 5, bg = "#eee", command = lambda: all_clear()).grid(row = 0, column = 0, columnspan = 3, padx = 1, pady = 1)
+divide = Button(frame, text = "/", fg = "black", width = 10, height = 3, bd = 5, bg = "#eee", command = lambda: mouse_click("/")).grid(row = 0, column = 3, padx = 1, pady = 1)
+
+# Second row 
+seven = Button(frame, text = "7", fg = "black", width = 10, height = 3, bd = 5, bg = "#fff", command = lambda: mouse_click(7)).grid(row = 1, column = 0, padx = 1, pady = 1)
+eight = Button(frame, text = "8", fg = "black", width = 10, height = 3, bd = 5, bg = "#fff", command = lambda: mouse_click(8)).grid(row = 1, column = 1, padx = 1, pady = 1)
+nine = Button(frame, text = "9", fg = "black", width = 10, height = 3, bd = 5, bg = "#fff", command = lambda: mouse_click(9)).grid(row = 1, column = 2, padx = 1, pady = 1)
+multiply = Button(frame, text = "*", fg = "black", width = 10, height = 3, bd = 5, bg = "#eee", command = lambda: mouse_click("*")).grid(row = 1, column = 3, padx = 1, pady = 1)
+ 
+# Third row
+four = Button(frame, text = "4", fg = "black", width = 10, height = 3, bd = 5, bg = "#fff", command = lambda: mouse_click(4)).grid(row = 2, column = 0, padx = 1, pady = 1)
+five = Button(frame, text = "5", fg = "black", width = 10, height = 3, bd = 5, bg = "#fff", command = lambda: mouse_click(5)).grid(row = 2, column = 1, padx = 1, pady = 1)
+six = Button(frame, text = "6", fg = "black", width = 10, height = 3, bd = 5, bg = "#fff", command = lambda: mouse_click(6)).grid(row = 2, column = 2, padx = 1, pady = 1)
+minus = Button(frame, text = "-", fg = "black", width = 10, height = 3, bd = 5, bg = "#eee", command = lambda: mouse_click("-")).grid(row = 2, column = 3, padx = 1, pady = 1)
+ 
+# Fourth row
+one = Button(frame, text = "1", fg = "black", width = 10, height = 3, bd = 5, bg = "#fff", command = lambda: mouse_click(1)).grid(row = 3, column = 0, padx = 1, pady = 1)
+two = Button(frame, text = "2", fg = "black", width = 10, height = 3, bd = 5, bg = "#fff", command = lambda: mouse_click(2)).grid(row = 3, column = 1, padx = 1, pady = 1)
+three = Button(frame, text = "3", fg = "black", width = 10, height = 3, bd =5, bg = "#fff", command = lambda: mouse_click(3)).grid(row = 3, column = 2, padx = 1, pady = 1)
+plus = Button(frame, text = "+", fg = "black", width = 10, height = 3, bd = 5, bg = "#eee", command = lambda: mouse_click("+")).grid(row = 3, column = 3, padx = 1, pady = 1)
+ 
+# Fifth row
+zero = Button(frame, text = "0", fg = "black", width = 23, height = 3, bd = 5, bg = "#fff", command = lambda: mouse_click(0)).grid(row = 4, column = 0, columnspan = 2, padx = 1, pady = 1)
+point = Button(frame, text = ".", fg = "black", width = 10, height = 3, bd = 5, bg = "#eee", command = lambda: mouse_click(".")).grid(row = 4, column = 2, padx = 1, pady = 1)
+equals = Button(frame, text = "=", fg = "black", width = 10, height = 3, bd = 5, bg = "#eee", command = lambda: equal()).grid(row = 4, column = 3, padx = 1, pady = 1)
+
+sem.mainloop()
